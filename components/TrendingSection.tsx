@@ -1,9 +1,25 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import Container from "./Container";
 import PosterCard from "./PosterCard";
 
-import { posters } from "@/lib/posters";
+import { getPosters } from "@/services/posterService";
+import { Poster } from "@/types/poster";
 
 export default function TrendingSection() {
+  const [posters, setPosters] = useState<Poster[]>([]);
+
+  useEffect(() => {
+    async function loadPosters() {
+      const data = await getPosters();
+      setPosters(data);
+    }
+
+    loadPosters();
+  }, []);
+
   return (
     <section className="py-32">
       <Container>
@@ -20,10 +36,6 @@ export default function TrendingSection() {
             </h2>
           </div>
 
-          <button className="hidden md:block text-zinc-400 hover:text-white transition">
-            View All
-          </button>
-
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -31,7 +43,13 @@ export default function TrendingSection() {
           {posters.map((poster) => (
             <PosterCard
               key={poster.id}
-              poster={poster}
+              poster={{
+                id: poster.id,
+                title: poster.title,
+                category: poster.category,
+                creator: poster.creator,
+                image: poster.image_url,
+              }}
             />
           ))}
 

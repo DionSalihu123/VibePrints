@@ -3,5 +3,6 @@ export type Poster = {
   title: string;
   category: string;
   creator: string;
-  image: string;
+  image?: string;
+  image_url?: string;
 };
