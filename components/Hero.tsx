@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 import Container from "./Container";
 
 export default function Hero() {
@@ -7,7 +11,13 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-purple-500/10 via-transparent to-transparent blur-3xl" />
 
       <Container>
-        <div className="text-center">
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-center"
+        >
 
           <p className="uppercase tracking-[0.3em] text-sm text-zinc-400 mb-6">
             Modern Poster Marketplace
@@ -37,7 +47,8 @@ export default function Hero() {
 
           </div>
 
-        </div>
+        </motion.div>
+
       </Container>
     </section>
   );

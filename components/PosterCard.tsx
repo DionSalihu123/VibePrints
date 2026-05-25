@@ -1,5 +1,9 @@
-import { Poster } from "@/types/poster";
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
+
+import { Poster } from "@/types/poster";
 
 type PosterCardProps = {
   poster: Poster;
@@ -9,7 +13,13 @@ export default function PosterCard({
   poster,
 }: PosterCardProps) {
   return (
-    <div className="group cursor-pointer">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+      className="group cursor-pointer"
+    >
 
       <div className="relative overflow-hidden rounded-3xl">
 
@@ -45,6 +55,6 @@ export default function PosterCard({
 
       </div>
 
-    </div>
+    </motion.div>
   );
 }
