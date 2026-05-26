@@ -92,6 +92,12 @@ export default function LoginPage() {
             Create account
           </Link>
           <Link
+            href="/"
+            className="w-full rounded-full border border-white/10 bg-white/5 px-6 py-4 text-center text-sm text-white transition hover:bg-white/10 sm:w-auto"
+          >
+            Back home
+          </Link>
+          <Link
             href="/categories"
             className="w-full rounded-full bg-white px-6 py-4 text-center text-sm font-semibold text-black transition hover:bg-white/90 sm:w-auto"
           >

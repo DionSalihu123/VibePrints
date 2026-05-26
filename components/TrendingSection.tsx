@@ -55,7 +55,7 @@ export default function TrendingSection() {
   };
 
   return (
-    <section className="py-32">
+    <section id="trending" className="py-32">
       <Container>
 
         <div className="flex items-end justify-between mb-16">

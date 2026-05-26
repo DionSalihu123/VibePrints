@@ -135,6 +135,12 @@ export default function RegisterPage() {
           >
             Already have an account?
           </Link>
+          <Link
+            href="/"
+            className="w-full rounded-full border border-white/10 bg-white/5 px-6 py-4 text-center text-sm text-white transition hover:bg-white/10 sm:w-auto"
+          >
+            Back home
+          </Link>
         </div>
 
         {message ? (

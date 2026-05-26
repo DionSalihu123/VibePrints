@@ -35,6 +35,9 @@ export default function Navbar() {
               <Link href="/favorites" className="hover:text-white transition">
                 Favorites
               </Link>
+              <Link href="/cart" className="hover:text-white transition">
+                Cart
+              </Link>
             </div>
           </div>
 

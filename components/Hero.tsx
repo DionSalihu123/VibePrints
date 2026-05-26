@@ -45,12 +45,12 @@ export default function Hero() {
               Explore Posters
             </Link>
 
-            <a
-              href="#"
+            <Link
+              href="/#trending"
               className="px-8 py-4 rounded-full border border-white/20 hover:bg-white/10 transition"
             >
               Trending Now
-            </a>
+            </Link>
 
           </div>
 

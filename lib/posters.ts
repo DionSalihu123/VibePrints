@@ -53,5 +53,37 @@ export const posters: Poster[] = [
     creator: "NBA Finals",
     image_url:
       "https://images.unsplash.com/photo-1546519638-68e109498ffc",
+    price: 79,
+    created_at: "2025-08-12",
+  },
+  {
+    id: 7,
+    title: "Electric Dreams",
+    category: "Music",
+    creator: "Synthwave Collective",
+    image_url:
+      "https://images.unsplash.com/photo-1511376777868-611b54f68947",
+    price: 39,
+    created_at: "2025-07-05",
+  },
+  {
+    id: 8,
+    title: "Neo Noir",
+    category: "Movies",
+    creator: "Film Noir Studio",
+    image_url:
+      "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9",
+    price: 45,
+    created_at: "2025-06-20",
+  },
+  {
+    id: 9,
+    title: "Final Lap",
+    category: "Sports",
+    creator: "Grand Prix",
+    image_url:
+      "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
+    price: 59,
+    created_at: "2025-05-18",
   },
 ];

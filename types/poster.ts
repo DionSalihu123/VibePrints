@@ -5,5 +5,6 @@ export type Poster = {
   creator: string;
   image_url: string;
   description?: string;
+  price?: number;
   created_at?: string;
 };
