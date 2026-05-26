@@ -19,7 +19,7 @@ export default function TrendingSection() {
   useEffect(() => {
     async function loadPosters() {
       const data = await getPosters();
-      setPosters(data);
+      setPosters(data.slice(0, 9));
       setLoading(false);
     }
 

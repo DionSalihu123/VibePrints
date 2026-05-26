@@ -2,42 +2,62 @@ import { supabase } from "@/lib/supabase";
 import { Poster } from "@/types/poster";
 import { posters as samplePosters } from "@/lib/posters";
 
+function logUnexpectedSupabaseError(error: { code?: string } | null) {
+  if (!error || error.code === "PGRST116" || error.code === "42703") {
+    return;
+  }
+
+  console.error(error);
+}
+
 function normalizePosters(rawData: unknown[]): Poster[] {
   return rawData.map((poster) => {
     const typedPoster = poster as Poster;
-    const defaultPrice = samplePosters.find((item) => item.id === typedPoster.id)?.price ?? 49;
+    const samplePoster = samplePosters.find((item) => item.id === typedPoster.id);
     return {
       ...typedPoster,
-      price: typedPoster.price ?? defaultPrice,
+      section: typedPoster.section ?? samplePoster?.section,
+      price: typedPoster.price ?? samplePoster?.price ?? 49,
     };
   });
+}
+
+function mergeWithSamplePosters(posters: Poster[], fallbackPosters: Poster[]) {
+  const posterIds = new Set(posters.map((poster) => poster.id));
+  const missingFallbackPosters = fallbackPosters.filter((poster) => !posterIds.has(poster.id));
+
+  return [...posters, ...missingFallbackPosters];
 }
 
 export async function getPosters() {
   const { data, error } = await supabase
     .from("posters")
-    .select("id,title,category,creator,image_url,created_at");
+    .select("id,title,category,section,creator,image_url,created_at");
 
   if (error || !data || data.length === 0) {
-    if (error) console.error(error);
+    logUnexpectedSupabaseError(error);
     return samplePosters;
   }
 
-  return normalizePosters(data as unknown[]);
+  return mergeWithSamplePosters(normalizePosters(data as unknown[]), samplePosters);
 }
 
 export async function getPostersByCategory(category: string) {
   const { data, error } = await supabase
     .from("posters")
-    .select("id,title,category,creator,image_url,created_at")
+    .select("id,title,category,section,creator,image_url,created_at")
     .eq("category", category);
 
   if (error || !data) {
-    if (error) console.error(error);
+    logUnexpectedSupabaseError(error);
     return samplePosters.filter((poster) => poster.category.toLowerCase() === category.toLowerCase());
   }
 
-  return normalizePosters(data as unknown[]);
+  const fallbackPosters = samplePosters.filter(
+    (poster) => poster.category.toLowerCase() === category.toLowerCase()
+  );
+
+  return mergeWithSamplePosters(normalizePosters(data as unknown[]), fallbackPosters);
 }
 
 export async function getPostersByIds(ids: number[]) {
@@ -47,11 +67,11 @@ export async function getPostersByIds(ids: number[]) {
 
   const { data, error } = await supabase
     .from("posters")
-    .select("id,title,category,creator,image_url,created_at")
+    .select("id,title,category,section,creator,image_url,created_at")
     .in("id", ids);
 
   if (error || !data) {
-    if (error) console.error(error);
+    logUnexpectedSupabaseError(error);
     return samplePosters.filter((poster) => ids.includes(poster.id));
   }
 
@@ -61,12 +81,12 @@ export async function getPostersByIds(ids: number[]) {
 export async function getPosterById(id: number) {
   const { data, error } = await supabase
     .from("posters")
-    .select("id,title,category,creator,image_url,created_at")
+    .select("id,title,category,section,creator,image_url,created_at")
     .eq("id", id)
     .single();
 
   if (error || !data) {
-    if (error) console.error(error);
+    logUnexpectedSupabaseError(error);
     return samplePosters.find((poster) => poster.id === id) ?? null;
   }
 
