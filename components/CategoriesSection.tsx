@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import Container from "./Container";
 import CategoryCard from "./CategoryCard";
 
@@ -18,20 +20,26 @@ export default function CategoriesSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-          <CategoryCard
-            title="Music"
-            description="Legendary albums, iconic artists, and aesthetic sound-inspired artwork."
-          />
+          <Link href="/categories/music">
+            <CategoryCard
+              title="Music"
+              description="Legendary albums, iconic artists, and aesthetic sound-inspired artwork."
+            />
+          </Link>
 
-          <CategoryCard
-            title="Movies"
-            description="Minimal cinematic posters inspired by classics and modern films."
-          />
+          <Link href="/categories/movies">
+            <CategoryCard
+              title="Movies"
+              description="Minimal cinematic posters inspired by classics and modern films."
+            />
+          </Link>
 
-          <CategoryCard
-            title="Sports"
-            description="Celebrate iconic moments, athletes, and unforgettable victories."
-          />
+          <Link href="/categories/sports">
+            <CategoryCard
+              title="Sports"
+              description="Celebrate iconic moments, athletes, and unforgettable victories."
+            />
+          </Link>
 
         </div>
 

@@ -3,20 +3,21 @@
 import { useEffect, useState } from "react";
 
 export default function useDarkMode() {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window === "undefined") {
+      return true;
+    }
+
+    return localStorage.getItem("theme") !== "light";
+  });
 
   useEffect(() => {
-    const storedTheme =
-      localStorage.getItem("theme");
-
-    if (storedTheme === "light") {
-      setDarkMode(false);
-      document.documentElement.classList.remove("dark");
-    } else {
-      setDarkMode(true);
+    if (darkMode) {
       document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
     }
-  }, []);
+  }, [darkMode]);
 
   const toggleDarkMode = () => {
     if (darkMode) {

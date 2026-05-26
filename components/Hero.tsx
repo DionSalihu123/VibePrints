@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 import Container from "./Container";
@@ -37,13 +38,19 @@ export default function Hero() {
 
           <div className="flex items-center justify-center gap-4 mt-10">
 
-            <button className="px-8 py-4 rounded-full bg-white text-black font-semibold hover:scale-105 transition">
+            <Link
+              href="/categories"
+              className="px-8 py-4 rounded-full bg-white text-black font-semibold hover:scale-105 transition"
+            >
               Explore Posters
-            </button>
+            </Link>
 
-            <button className="px-8 py-4 rounded-full border border-white/20 hover:bg-white/10 transition">
+            <a
+              href="#"
+              className="px-8 py-4 rounded-full border border-white/20 hover:bg-white/10 transition"
+            >
               Trending Now
-            </button>
+            </a>
 
           </div>
 

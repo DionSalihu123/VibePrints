@@ -6,7 +6,7 @@ export const posters: Poster[] = [
     title: "Blonde",
     category: "Music",
     creator: "Frank Ocean",
-    image:
+    image_url:
       "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4",
   },
 
@@ -15,7 +15,7 @@ export const posters: Poster[] = [
     title: "Interstellar",
     category: "Movies",
     creator: "Christopher Nolan",
-    image:
+    image_url:
       "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba",
   },
 
@@ -24,7 +24,7 @@ export const posters: Poster[] = [
     title: "GOAT",
     category: "Sports",
     creator: "Lionel Messi",
-    image:
+    image_url:
       "https://images.unsplash.com/photo-1517466787929-bc90951d0974",
   },
 
@@ -33,7 +33,7 @@ export const posters: Poster[] = [
     title: "Graduation",
     category: "Music",
     creator: "Kanye West",
-    image:
+    image_url:
       "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f",
   },
 
@@ -42,7 +42,7 @@ export const posters: Poster[] = [
     title: "Drive",
     category: "Movies",
     creator: "Ryan Gosling",
-    image:
+    image_url:
       "https://images.unsplash.com/photo-1440404653325-ab127d49abc1",
   },
 
@@ -51,7 +51,7 @@ export const posters: Poster[] = [
     title: "Champions",
     category: "Sports",
     creator: "NBA Finals",
-    image:
+    image_url:
       "https://images.unsplash.com/photo-1546519638-68e109498ffc",
   },
 ];
