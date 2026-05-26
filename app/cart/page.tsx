@@ -4,6 +4,9 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 
 import Container from "@/components/Container";
+import useSupabaseAuth from "@/hooks/useSupabaseAuth";
+import { createOrder } from "@/services/orderService";
+import { OrderItem } from "@/types/order";
 
 type CartItem = {
   id: number;
@@ -14,6 +17,9 @@ type CartItem = {
 
 export default function CartPage() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [status, setStatus] = useState<string | null>(null);
+  const [actionLoading, setActionLoading] = useState(false);
+  const { user, loading: authLoading } = useSupabaseAuth();
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -46,11 +52,49 @@ export default function CartPage() {
     const updated = cartItems
       .map((item) => {
         if (item.id !== id) return item;
-        return { ...item, quantity: Math.max(1, item.quantity + delta) };
+
+        return {
+          ...item,
+          quantity: Math.max(1, Math.min(5, item.quantity + delta)),
+        };
       })
       .filter((item) => item.quantity > 0);
 
     updateCart(updated);
+  };
+
+  const handleSaveOrder = async () => {
+    if (!user) {
+      setStatus("Sign in to save an order record.");
+      return;
+    }
+
+    if (cartItems.length === 0) {
+      setStatus("Your cart is empty.");
+      return;
+    }
+
+    setActionLoading(true);
+    setStatus(null);
+
+    const orderItems: OrderItem[] = cartItems.map((item) => ({
+      id: item.id,
+      title: item.title,
+      price: item.price,
+      quantity: item.quantity,
+    }));
+
+    try {
+      await createOrder(user.id, orderItems);
+      localStorage.removeItem("vibeprints-cart");
+      setCartItems([]);
+      setStatus("Order record saved. You can track it later in your account.");
+    } catch (error) {
+      console.error(error);
+      setStatus("Unable to save order right now. Please try again later.");
+    }
+
+    setActionLoading(false);
   };
 
   const total = useMemo(
@@ -115,7 +159,8 @@ export default function CartPage() {
                       <button
                         type="button"
                         onClick={() => handleQuantityChange(item.id, 1)}
-                        className="rounded-full border border-white/10 px-3 py-2 text-white hover:bg-white/10"
+                        disabled={item.quantity >= 5}
+                        className="rounded-full border border-white/10 px-3 py-2 text-white hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50"
                       >
                         +
                       </button>
@@ -133,15 +178,22 @@ export default function CartPage() {
                 <span className="text-3xl font-bold">${total.toFixed(2)}</span>
               </div>
               <p className="text-zinc-400 leading-relaxed mb-8">
-                When you are ready to purchase, we can add a simple order table later and keep checkout lightweight without adding a full API layer.
+                Save a simple order record now and track purchases later without adding a full checkout API.
               </p>
               <button
                 type="button"
-                disabled
-                className="w-full rounded-full bg-white/10 px-6 py-4 text-sm font-semibold text-white cursor-not-allowed"
+                disabled={actionLoading || cartItems.length === 0 || !user}
+                onClick={handleSaveOrder}
+                className="w-full rounded-full bg-white px-6 py-4 text-sm font-semibold text-black transition hover:bg-white/90 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                Purchase coming soon
+                {actionLoading ? "Saving order…" : user ? "Save order record" : "Sign in to save order"}
               </button>
+              {status ? <p className="mt-4 text-sm text-zinc-300">{status}</p> : null}
+              {authLoading ? (
+                <p className="mt-4 text-sm text-zinc-500">Checking session…</p>
+              ) : !user ? (
+                <p className="mt-4 text-sm text-zinc-400">Sign in to link this order record to your account.</p>
+              ) : null}
             </div>
           </div>
         )}

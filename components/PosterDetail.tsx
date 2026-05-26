@@ -87,7 +87,12 @@ export default function PosterDetail({ poster }: PosterDetailProps) {
     const existingItem = items.find((item) => item.id === poster.id);
 
     if (existingItem) {
-      existingItem.quantity += 1;
+      if (existingItem.quantity >= 5) {
+        setStatus("You can add a maximum of 5 of the same poster.");
+        return;
+      }
+
+      existingItem.quantity = Math.min(existingItem.quantity + 1, 5);
     } else {
       items.push({ id: poster.id, title: poster.title, price: displayPrice, quantity: 1 });
     }
