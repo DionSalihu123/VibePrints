@@ -31,7 +31,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-white text-black dark:bg-[#0b0b0f] dark:text-white">
         <Navbar />
         {children}
       </body>

@@ -23,7 +23,7 @@ const categories = [
 
 export default function CategoriesPage() {
   return (
-    <main className="bg-[#0b0b0f] text-white min-h-screen py-24">
+    <main className="bg-white text-black dark:bg-[#0b0b0f] dark:text-white min-h-screen py-24">
       <Container>
         <div className="max-w-3xl">
           <p className="uppercase tracking-[0.3em] text-sm text-zinc-500 mb-4">Poster categories</p>

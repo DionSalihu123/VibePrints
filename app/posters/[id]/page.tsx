@@ -16,7 +16,7 @@ export default async function PosterPage({ params }: PosterPageProps) {
 
   if (!poster) {
     return (
-      <main className="min-h-screen bg-[#0b0b0f] text-white flex items-center justify-center px-6 py-24">
+      <main className="min-h-screen bg-white text-black dark:bg-[#0b0b0f] dark:text-white flex items-center justify-center px-6 py-24">
         <Container>
           <div className="rounded-3xl border border-white/10 bg-white/5 p-14 text-center">
             <h1 className="text-4xl font-bold mb-4">Poster not found</h1>
@@ -36,7 +36,7 @@ export default async function PosterPage({ params }: PosterPageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-[#0b0b0f] text-white py-24">
+    <main className="min-h-screen bg-white text-black dark:bg-[#0b0b0f] dark:text-white py-24">
       <Container>
         <PosterDetail poster={poster} />
       </Container>

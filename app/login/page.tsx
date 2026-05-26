@@ -33,7 +33,7 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#0b0b0f] text-white flex items-center justify-center px-6 py-16">
+    <main className="min-h-screen bg-white text-black dark:bg-[#0b0b0f] dark:text-white flex items-center justify-center px-6 py-16">
       <div className="w-full max-w-xl rounded-3xl border border-white/10 bg-white/5 p-10 shadow-2xl">
         <div className="mb-10">
           <p className="uppercase tracking-[0.3em] text-sm text-zinc-500">Welcome back</p>

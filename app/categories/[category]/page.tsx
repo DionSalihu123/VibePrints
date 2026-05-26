@@ -17,7 +17,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const posters = await getPostersByCategory(normalizedCategory);
 
   return (
-    <main className="bg-[#0b0b0f] text-white min-h-screen py-24">
+    <main className="bg-white text-black dark:bg-[#0b0b0f] dark:text-white min-h-screen py-24">
       <Container>
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-14">
           <div>

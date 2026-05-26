@@ -1,15 +1,23 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { supabase } from "@/lib/supabase";
 import useSupabaseAuth from "@/hooks/useSupabaseAuth";
 
 export default function AuthWidget() {
+  const router = useRouter();
   const { session } = useSupabaseAuth();
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
+
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("vibeprints-cart");
+    }
+
+    router.push("/");
   };
 
   return (

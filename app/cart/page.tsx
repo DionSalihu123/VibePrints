@@ -59,7 +59,7 @@ export default function CartPage() {
   );
 
   return (
-    <main className="min-h-screen bg-[#0b0b0f] text-white py-24">
+    <main className="min-h-screen bg-white text-black dark:bg-[#0b0b0f] dark:text-white py-24">
       <Container>
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-12">
           <div>
