@@ -25,7 +25,7 @@ export default function AuthWidget() {
       {session?.user ? (
         <>
           <span className="hidden sm:inline text-sm text-zinc-200 truncate max-w-[140px]">
-            {session.user.email}
+            {session.user.user_metadata?.username || session.user.email}
           </span>
           <button
             onClick={handleSignOut}
