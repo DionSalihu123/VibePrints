@@ -1,0 +1,46 @@
+Vibeprints eshte nje platform moderne ekomerc e cila per qeelim ka shitjen e posterave
+te influencuar nga muzika,konemaja dhe sporti applikacioni i mundeson perdorueseve
+kerkimin e posterave,me i shtu tek posterat e perlqyer dhe me i shtu ne shport
+per me vazhdu me blerjen
+
+-vibeprints e implementon ne sistem te sigurt per user auth dhe session
+menagment
+
+-po ashtu ka features te cilat jane me subjective si light dhe dark mode po
+ashtu posterat e pelqyer
+
+-vibeprints eshte responsive per qdo device
+
+-tech stack!!
+
+----Nextjs,pse nextjs?
+
+--server-side-rendering:e permirson kohen qe i nevojitet per rescoursest me u
+ba load
+-API routes: built-in beckend capabalities
+-na ndihmon me optimizimin e formatee dhe integrimin me performant te imazheve
+-perdorim me madh i componeteve React per me ba reduce ose me shmang js
+
+------React,pse react?
+--per arsyen e arkitektures se bazuar ne komponente dhe nje ekosistem shum te
+pasur
+
+
+------Type-script,pse ts?
+e kemi perdorur ts per arsye se i kam erroret ne compile-time
+
+
+-----beckend technologies-------
+
+Supabase,pse supabase
+-aryse baze eshte spese supabase eshte beckend as service,na i largon arsyen e
+perdorimit te nje kostum beckend
+
+-po ashtu databaze e integruar postgrasql
+
+-autentifikimi eshte built in
+
+-scalability eshte autmatike me moton po ashtu pay as you go
+
+
+-mos harru deployemnt ne vercel(si ta kry qita edhe me prakitku pak prezantimin lirisht muj mi hi ne sisteme te shperndara)
